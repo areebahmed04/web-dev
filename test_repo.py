@@ -1,5 +1,3 @@
-from main import Repo
-from flask import jsonify
 import requests
 import pytest
 
