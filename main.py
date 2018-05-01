@@ -1,15 +1,21 @@
 from flask import jsonify, Flask
 import requests
 
-app = Flask(__name__)
+
+def create_app():
+
+    app = Flask(__name__)
+    return app
+
 
 class Repo:
+
     def __init__(self, url_name):
         self.url = url_name
+
     def get_repo(self):
         res = requests.get(self.url)
         j = res.json()
-        print("Here", type(j))
         d = dict()
         count = 0
         for i in j:
@@ -18,11 +24,14 @@ class Repo:
         return jsonify(d)
 
 
-@app.route('/repo/<name>')
-def index(name):
-    url = "https://api.github.com/users/" + name + "/repos"
-    my_repo = Repo(url)
-    return my_repo.get_repo()
-
 if __name__ == '__main__':
+
+    app = create_app()
+
+    @app.route('/repo/<name>', methods=['GET'])
+    def index(name):
+        url = "https://api.github.com/users/" + name + "/repos"
+        my_repo = Repo(url)
+        return my_repo.get_repo()
+
     app.run(debug=True)
