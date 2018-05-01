@@ -1,0 +1,4 @@
+{
+  "demo.py::test_get_repo": true,
+  "test_repo.py::TestRepo::test_get_repo": true
+}
