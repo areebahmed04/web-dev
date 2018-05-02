@@ -1,20 +1,10 @@
-import requests
-import pytest
-
-
-@pytest.fixture
-def req():
-    res = requests.get('http://127.0.0.1:5000/repo/areebahmed04')
-    return res
-
-
 def test_return_type(req):
 
     j = req.json()
     assert type(j) == type(dict())
 
 
-def test_return_value(req):
+def test_status_code(req):
 
     assert req.status_code == 200
 

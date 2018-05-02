@@ -2,10 +2,7 @@ from flask import jsonify, Flask
 import requests
 
 
-def create_app():
-
-    app = Flask(__name__)
-    return app
+app = Flask(__name__)
 
 
 class Repo:
@@ -24,14 +21,14 @@ class Repo:
         return jsonify(d)
 
 
+@app.route('/repo/<name>', methods=['GET'])
+def index(name):
+
+    url = "https://api.github.com/users/" + name + "/repos"
+    my_repo = Repo(url)
+    return my_repo.get_repo()
+
+
 if __name__ == '__main__':
-
-    app = create_app()
-
-    @app.route('/repo/<name>', methods=['GET'])
-    def index(name):
-        url = "https://api.github.com/users/" + name + "/repos"
-        my_repo = Repo(url)
-        return my_repo.get_repo()
 
     app.run(debug=True)

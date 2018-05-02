@@ -1,3 +1,6 @@
 [
-  "test_repo.py::test_return_type"
+  "test_repo.py::test_return_type",
+  "test_repo.py::test_return_value",
+  "test_repo.py::test_return_size",
+  "test_repo.py::test_name_presence"
 ]
