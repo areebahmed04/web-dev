@@ -12,7 +12,7 @@ def index():
     db = get_db()
     posts = db.execute(
         'SELECT *'
-        ' FROM user where username=  "abc" '
+        ' FROM user '
     ).fetchall()
     return render_template('list/index.html', posts=posts)
 
